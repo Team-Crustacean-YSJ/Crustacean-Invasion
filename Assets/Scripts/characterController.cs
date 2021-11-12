@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class characterController : MonoBehaviour
 {
+    // Needed for movement -JW
     private float moveHorizonatal;
     private float moveVertical;
     private Vector2 currentVelocity;
+
+    //Serialize allows to have private variables accessible in Unity editor 
     [SerializeField]
-    private float movementSpeed = 4.5f;
-    private Rigidbody2D characterRigidBody;
-    private bool isJumping = false;
+    private float movementSpeed = 4.5f; // movement speed 
+    private Rigidbody2D characterRigidBody; //how we move 
+    public Animator anim; //access the animator 
+    private bool isJumping = false; // two bools to prevent spam jumping 
     private bool alreadyJumped = false;
     [SerializeField]
-    private float jumpForce = 300f;
+    private float jumpForce = 300f; //force applied to rigidbody to move up
+    private bool facingRight = true; //bool for direction of animation
     
     // Start is called before the first frame update
     void Start()
@@ -29,32 +34,52 @@ public class characterController : MonoBehaviour
         this.currentVelocity = this.characterRigidBody.velocity;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!isJumping)
+            if (!isJumping) //stops the player jumping in mid-air
             {
                 isJumping = true;
-                alreadyJumped = false;
+                anim.SetBool("isJumping", true); // runs the animation for jumping
+                alreadyJumped = false; // isJumping and alreadyJumped can't be true at the same time or the logic won't work
             }
+        }
+        anim.SetFloat("Speed", Mathf.Abs(moveHorizonatal)); //plays the run animation
+        if (moveHorizonatal > 0 && !facingRight) //logic to determine run direction for animations
+        {
+            Flip();
+        }
+        else if (moveHorizonatal < 0 && facingRight)
+        {
+            Flip();
         }
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() //running physics interactions in FixedUpdate rather than update means that it will run a certain number of times per second so interactions are consistent, rather than in Update where it can be variable
     {
-        if (this.moveHorizonatal != 0)
+        if (this.moveHorizonatal != 0) //if the horizontal axis is in action
         {
-            this.characterRigidBody.velocity = new Vector2(this.moveHorizonatal * this.movementSpeed, this.currentVelocity.y);
+            this.characterRigidBody.velocity = new Vector2(this.moveHorizonatal * this.movementSpeed, this.currentVelocity.y); //multiply the axis by our speed and apply it to the rigidbody character
         }
-        if(isJumping && !alreadyJumped)
+        if(isJumping && !alreadyJumped) //if our character is meant to be in the air
         {
-            this.characterRigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Force);
-            this.alreadyJumped = true;
+            this.characterRigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Force); //make them fly (or apply force upwards, in real terms)
+            this.alreadyJumped = true; //and then let the game know that our character is in the air
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("barrier"))
+        if (collision.gameObject.tag.Equals("barrier")) //if the game object we just hit has the tag "barrier"
         {
-            this.isJumping = false;
+            this.isJumping = false; //let the character jump again
+            anim.SetBool("isJumping", false);//and reset the animations either back to idle or to run
         }
+    }
+
+    private void Flip() //JW
+    {
+        facingRight = !facingRight; //flips the bool on direction
+
+        Vector3 newScale = transform.localScale; //takes the current scale
+        newScale.x *= -1; //and inverts the x-axis
+        transform.localScale = newScale; //and then reapplies it back to the model
     }
 }
