@@ -12,7 +12,7 @@ TagManager:
   - character
   - Water
   - UI
-  - 
+  - Obstacles
   - 
   - 
   - 
@@ -50,4 +50,7 @@ TagManager:
     locked: 0
   - name: foreground
     uniqueID: 2575263455
+    locked: 0
+  - name: entities for AI movement
+    uniqueID: 638492977
     locked: 0
