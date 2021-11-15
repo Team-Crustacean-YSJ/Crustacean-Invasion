@@ -19,6 +19,12 @@ public class characterController : MonoBehaviour
     [SerializeField]
     private float jumpForce = 300f; //force applied to rigidbody to move up
     private bool facingRight = true; //bool for direction of animation
+
+    //Attack variables
+    public GameObject projectile;
+    public Transform shotPoint;
+    private float timeBtwShots;
+    public float startTimeBtwShots;
     
     // Start is called before the first frame update
     void Start()
@@ -50,6 +56,21 @@ public class characterController : MonoBehaviour
         {
             Flip();
         }
+
+        //attack code
+        if(timeBtwShots <= 0)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Instantiate(projectile, shotPoint.position, shotPoint.rotation);
+                timeBtwShots = startTimeBtwShots;
+            }
+        }
+        else
+        {
+            timeBtwShots -= Time.deltaTime;
+        }
+        
     }
 
     private void FixedUpdate() //running physics interactions in FixedUpdate rather than update means that it will run a certain number of times per second so interactions are consistent, rather than in Update where it can be variable
