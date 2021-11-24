@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 822114465964708724}
   - component: {fileID: 822114465964708726}
   - component: {fileID: 822114465964708725}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform
   m_TagString: barrier
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0040495396, y: -0.4168403}
+  m_Offset: {x: 0.0025634766, y: -0.4138683}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -129,5 +129,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.9724097, y: 0.17970824}
+  m_Size: {x: 3.9218855, y: 0.17376423}
   m_EdgeRadius: 0

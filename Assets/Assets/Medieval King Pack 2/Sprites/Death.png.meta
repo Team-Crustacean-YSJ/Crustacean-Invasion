@@ -1,21 +1,27 @@
 fileFormatVersion: 2
-guid: 6e2b860b2cf2adc4788f1feb7233fefa
+guid: 11dfc7ac31d5c7847968009983536a96
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8008791250619013794
-    second: Take Hit - white silhouette_0
+      213: 6991849013916550155
+    second: Death_0
   - first:
-      213: 3891156215361153934
-    second: Take Hit - white silhouette_1
+      213: -276728812324164698
+    second: Death_1
   - first:
-      213: -7146689698409757683
-    second: Take Hit - white silhouette_2
+      213: 3156895337291164288
+    second: Death_2
   - first:
-      213: 8523606802079886837
-    second: Take Hit - white silhouette_3
+      213: 1400002288684528572
+    second: Death_3
+  - first:
+      213: -1891625820773287384
+    second: Death_4
+  - first:
+      213: -5789737788129074030
+    second: Death_5
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
@@ -35,6 +41,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -44,8 +51,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -66,9 +73,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -134,7 +145,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Take Hit - white silhouette_0
+      name: Death_0
       rect:
         serializedVersion: 2
         x: 0
@@ -148,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f0981524fd811243b6880a7ab066cfd
-      internalID: -8008791250619013794
+      spriteID: 5589bbab2a06ada43af1a41d7f5442cb
+      internalID: 6991849013916550155
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Take Hit - white silhouette_1
+      name: Death_1
       rect:
         serializedVersion: 2
         x: 160
@@ -169,14 +180,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec39a4c988a48f64e83657369710fd89
-      internalID: 3891156215361153934
+      spriteID: 79fdeee7976756e4488b8612a0413d8a
+      internalID: -276728812324164698
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Take Hit - white silhouette_2
+      name: Death_2
       rect:
         serializedVersion: 2
         x: 320
@@ -190,14 +201,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 312ed22b2aa933948b71e4133157000b
-      internalID: -7146689698409757683
+      spriteID: fb396b9f471a51648ab6bb4a5e36cb51
+      internalID: 3156895337291164288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Take Hit - white silhouette_3
+      name: Death_3
       rect:
         serializedVersion: 2
         x: 480
@@ -211,8 +222,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62bb245fb313d6849a48d85d8e83883b
-      internalID: 8523606802079886837
+      spriteID: 81c37abefb2c3a64fa8358dfc29c0edc
+      internalID: 1400002288684528572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_4
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 160
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a8e351bbbc86d842b81d250d3f9e57c
+      internalID: -1891625820773287384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 160
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70d114d96beb73c4a9e024760ff4dc3c
+      internalID: -5789737788129074030
       vertices: []
       indices: 
       edges: []

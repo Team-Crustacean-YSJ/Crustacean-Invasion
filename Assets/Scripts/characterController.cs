@@ -25,11 +25,19 @@ public class characterController : MonoBehaviour
     public Transform shotPoint;
     private float timeBtwShots;
     public float startTimeBtwShots;
+
+    //Health variables
+    public int maxHealth = 12;
+    public int curHealth = 0;
+    public int damageOnHit = 3;
+    public bool isDead = false;
+    public HealthBar healthBar;
     
     // Start is called before the first frame update
     void Start()
     {
         this.characterRigidBody = GetComponent<Rigidbody2D>();
+        curHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -70,7 +78,15 @@ public class characterController : MonoBehaviour
         {
             timeBtwShots -= Time.deltaTime;
         }
-        
+
+        //health code
+        if (curHealth <= 0)
+        {
+            characterRigidBody.velocity = Vector2.zero;
+            characterRigidBody.angularVelocity = 0f;
+            anim.SetBool("isDead", true);
+            Invoke("DeadCheck", 1f);
+        }
     }
 
     private void FixedUpdate() //running physics interactions in FixedUpdate rather than update means that it will run a certain number of times per second so interactions are consistent, rather than in Update where it can be variable
@@ -92,7 +108,16 @@ public class characterController : MonoBehaviour
         {
             this.isJumping = false; //let the character jump again
             anim.SetBool("isJumping", false);//and reset the animations either back to idle or to run
-        }
+        } else if (collision.gameObject.tag.Equals("Enemy")) //if enemy
+        {
+            curHealth -= damageOnHit; //take damage
+            healthBar.SetHealth(curHealth); //update the UI
+        } 
+    }
+
+   void DeadCheck()
+    {
+        isDead = true;
     }
 
     private void Flip() //JW
