@@ -32,6 +32,7 @@ public class characterController : MonoBehaviour
     public int damageOnHit = 3;
     public bool isDead = false;
     public HealthBar healthBar;
+    public bool invuln = false;
     
     // Start is called before the first frame update
     void Start()
@@ -68,7 +69,7 @@ public class characterController : MonoBehaviour
         //attack code
         if(timeBtwShots <= 0)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetAxis("Fire1") > 0)
             {
                 Instantiate(projectile, shotPoint.position, shotPoint.rotation);
                 timeBtwShots = startTimeBtwShots;
@@ -104,15 +105,50 @@ public class characterController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //Debug.Log(collision.gameObject.tag);
+        
         if (collision.gameObject.tag.Equals("barrier")) //if the game object we just hit has the tag "barrier"
         {
             this.isJumping = false; //let the character jump again
             anim.SetBool("isJumping", false);//and reset the animations either back to idle or to run
         } else if (collision.gameObject.tag.Equals("Enemy")) //if enemy
         {
-            curHealth -= damageOnHit; //take damage
-            healthBar.SetHealth(curHealth); //update the UI
+            if (invuln)
+            {
+                Vector2 dir = transform.position - collision.transform.position; //angle of collision
+                dir = -dir.normalized; //reverse angle tidied up
+                this.characterRigidBody.AddForce(dir * 200);
+            }
+            else
+            {
+                curHealth -= damageOnHit; //take damage
+                healthBar.SetHealth(curHealth); //update the UI
+                invuln = true;
+                Invoke("InvulnTimer", 0.5f);
+
+                Vector2 dir = transform.position - collision.transform.position; //angle of collision
+                this.characterRigidBody.AddForce(dir * 200);
+            }
         } 
+    }
+
+    private void OnTriggerStay2D (Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Enemy")) //if enemy
+        {
+            if (!invuln)
+            {
+                curHealth -= damageOnHit; //take damage
+                healthBar.SetHealth(curHealth); //update the UI
+                invuln = true;
+                Invoke("InvulnTimer", 1f);
+            }
+        }
+    }
+
+    void InvulnTimer()
+    {
+        invuln = false;
     }
 
    void DeadCheck()
@@ -128,4 +164,5 @@ public class characterController : MonoBehaviour
         newScale.x *= -1; //and inverts the x-axis
         transform.localScale = newScale; //and then reapplies it back to the model
     }
+    
 }

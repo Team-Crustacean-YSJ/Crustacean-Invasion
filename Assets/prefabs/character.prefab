@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 3640372431117753937}
   m_Layer: 0
   m_Name: character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,3 +232,8 @@ MonoBehaviour:
   projectile: {fileID: 6798146948119604563, guid: e81b0bc6ff8423d4687aa1ddcf7cb8dc, type: 3}
   shotPoint: {fileID: 19005648}
   startTimeBtwShots: 0.25
+  maxHealth: 15
+  curHealth: 0
+  damageOnHit: 3
+  isDead: 0
+  healthBar: {fileID: 0}
