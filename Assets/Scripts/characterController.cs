@@ -33,6 +33,9 @@ public class characterController : MonoBehaviour
     public bool isDead = false;
     public HealthBar healthBar;
     public bool invuln = false;
+
+    //Point Variables
+    int score = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -123,13 +126,18 @@ public class characterController : MonoBehaviour
             {
                 curHealth -= damageOnHit; //take damage
                 healthBar.SetHealth(curHealth); //update the UI
+                anim.SetTrigger("takeHit");
                 invuln = true;
                 Invoke("InvulnTimer", 0.5f);
 
                 Vector2 dir = transform.position - collision.transform.position; //angle of collision
                 this.characterRigidBody.AddForce(dir * 200);
             }
-        } 
+        }else if (collision.gameObject.tag.Equals("pickups"))
+        {
+            score += 1;
+            Debug.Log(score);
+        }
     }
 
     private void OnTriggerStay2D (Collider2D collision)
@@ -140,6 +148,7 @@ public class characterController : MonoBehaviour
             {
                 curHealth -= damageOnHit; //take damage
                 healthBar.SetHealth(curHealth); //update the UI
+                anim.SetTrigger("takeHit");
                 invuln = true;
                 Invoke("InvulnTimer", 1f);
             }
