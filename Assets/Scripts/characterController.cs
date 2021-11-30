@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class characterController : MonoBehaviour
 {
@@ -27,21 +28,27 @@ public class characterController : MonoBehaviour
     public float startTimeBtwShots;
 
     //Health variables
-    public int maxHealth = 12;
-    public int curHealth = 0;
+    public int maxHealth;
+    public static int curHealth;
     public int damageOnHit = 3;
     public bool isDead = false;
     public HealthBar healthBar;
     public bool invuln = false;
+    static bool runOnce = false;
 
     //Point Variables
-    int score = 0;
+    static int score = 0;
     
     // Start is called before the first frame update
     void Start()
     {
         this.characterRigidBody = GetComponent<Rigidbody2D>();
-        curHealth = maxHealth;
+        if(runOnce == false)
+        {
+            curHealth = maxHealth;
+            healthBar.SetHealth(curHealth);
+            runOnce = true;
+        }
     }
 
     // Update is called once per frame
@@ -50,7 +57,7 @@ public class characterController : MonoBehaviour
         this.moveHorizonatal = Input.GetAxis("Horizontal"); //X-Axis
         this.moveVertical = Input.GetAxis("Vertical"); //Y-Axis
         this.currentVelocity = this.characterRigidBody.velocity;
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetAxis("Jump") > 0)
         {
             if (!isJumping) //stops the player jumping in mid-air
             {
@@ -153,6 +160,13 @@ public class characterController : MonoBehaviour
                 Invoke("InvulnTimer", 1f);
             }
         }
+
+        if(collision.gameObject.tag.Equals("Door") && (Input.GetAxis("Submit") > 0)) //if door and button
+        {
+            Debug.Log("Door Active");
+            LoadScene();
+        }
+
     }
 
     void InvulnTimer()
@@ -172,6 +186,16 @@ public class characterController : MonoBehaviour
         Vector3 newScale = transform.localScale; //takes the current scale
         newScale.x *= -1; //and inverts the x-axis
         transform.localScale = newScale; //and then reapplies it back to the model
+    }
+
+    private void LoadScene()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+
+        currentScene += 1;
+
+        SceneManager.LoadScene(currentScene, LoadSceneMode.Single);
+
     }
     
 }

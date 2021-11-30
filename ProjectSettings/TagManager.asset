@@ -9,6 +9,7 @@ TagManager:
   - ShowOnPause
   - ShowOnFinish
   - pickups
+  - Door
   layers:
   - Default
   - TransparentFX
