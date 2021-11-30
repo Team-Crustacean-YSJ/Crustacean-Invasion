@@ -8,6 +8,10 @@ public class GameController : MonoBehaviour
     GameObject[] pauseObjects;
     GameObject[] finishObjects;
     public characterController playerAlive;
+
+    [SerializeField]
+    private Text scoreText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +21,7 @@ public class GameController : MonoBehaviour
         playerAlive = GameObject.FindGameObjectWithTag("Player").GetComponent<characterController>();
         hidePaused();
         hideFinished();
-
+        updateScore(characterController.score);
     }
 
     // Update is called once per frame
@@ -88,5 +92,10 @@ public class GameController : MonoBehaviour
         {
             g.SetActive(false);
         }
+    }
+
+    public void updateScore(int playerScore)
+    {
+        scoreText.text = "Score: " + playerScore.ToString();
     }
 }

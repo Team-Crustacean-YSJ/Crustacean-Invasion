@@ -154,6 +154,7 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 350
   nextWaypointDistance: 3
+  coin: {fileID: 243477349704934724, guid: 7049840aa0155324c85d93fca5fdc714, type: 3}
   enemyGFX: {fileID: 231412282987987840}
 --- !u!61 &3588789505367814588
 BoxCollider2D:

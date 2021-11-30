@@ -12,7 +12,7 @@ public class characterController : MonoBehaviour
 
     //Serialize allows to have private variables accessible in Unity editor 
     [SerializeField]
-    private float movementSpeed = 4.5f; // movement speed 
+    private static float movementSpeed = 4.5f; // movement speed 
     private Rigidbody2D characterRigidBody; //how we move 
     public Animator anim; //access the animator 
     private bool isJumping = false; // two bools to prevent spam jumping 
@@ -28,16 +28,18 @@ public class characterController : MonoBehaviour
     public float startTimeBtwShots;
 
     //Health variables
-    public int maxHealth;
+    public static int maxHealth = 12;
     public static int curHealth;
-    public int damageOnHit = 3;
+    public static int damageOnHit = 3;
     public bool isDead = false;
     public HealthBar healthBar;
     public bool invuln = false;
     static bool runOnce = false;
 
     //Point Variables
-    static int score = 0;
+    public static int score = 0;
+    public UpgradeMenu upgradeMenu;
+    public GameController gameController;
     
     // Start is called before the first frame update
     void Start()
@@ -104,7 +106,7 @@ public class characterController : MonoBehaviour
     {
         if (this.moveHorizonatal != 0) //if the horizontal axis is in action
         {
-            this.characterRigidBody.velocity = new Vector2(this.moveHorizonatal * this.movementSpeed, this.currentVelocity.y); //multiply the axis by our speed and apply it to the rigidbody character
+            this.characterRigidBody.velocity = new Vector2(this.moveHorizonatal * characterController.movementSpeed, this.currentVelocity.y); //multiply the axis by our speed and apply it to the rigidbody character
         }
         if(isJumping && !alreadyJumped) //if our character is meant to be in the air
         {
@@ -121,7 +123,7 @@ public class characterController : MonoBehaviour
         {
             this.isJumping = false; //let the character jump again
             anim.SetBool("isJumping", false);//and reset the animations either back to idle or to run
-        } else if (collision.gameObject.tag.Equals("Enemy")) //if enemy
+        } else if (collision.gameObject.tag.Equals("Enemy") ^ collision.gameObject.tag.Equals("spikes")) //if enemy
         {
             if (invuln)
             {
@@ -143,13 +145,13 @@ public class characterController : MonoBehaviour
         }else if (collision.gameObject.tag.Equals("pickups"))
         {
             score += 1;
-            Debug.Log(score);
+            gameController.updateScore(score);
         }
     }
 
     private void OnTriggerStay2D (Collider2D collision)
     {
-        if (collision.gameObject.tag.Equals("Enemy")) //if enemy
+        if (collision.gameObject.tag.Equals("Enemy") ^ collision.gameObject.tag.Equals("spikes")) //if enemy
         {
             if (!invuln)
             {
@@ -163,8 +165,16 @@ public class characterController : MonoBehaviour
 
         if(collision.gameObject.tag.Equals("Door") && (Input.GetAxis("Submit") > 0)) //if door and button
         {
-            Debug.Log("Door Active");
-            LoadScene();
+            if(GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+            {
+                LoadScene();
+            }
+            
+        }
+
+        if (collision.gameObject.tag.Equals("Shop") && (Input.GetAxis("Submit") > 0))
+        {
+            upgradeMenu.showUpgrades();
         }
 
     }
@@ -194,8 +204,59 @@ public class characterController : MonoBehaviour
 
         currentScene += 1;
 
-        SceneManager.LoadScene(currentScene, LoadSceneMode.Single);
+        if(currentScene <= (SceneManager.sceneCountInBuildSettings - 1))
+        {
+            SceneManager.LoadScene(currentScene, LoadSceneMode.Single);
+        }
+        else
+        {
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
+            currentScene = 0;
+        }
 
     }
+
+    public void speedUpgrade()
+    {
+        if(score >= 2)
+        {
+            movementSpeed += 0.5f;
+            score -= 2;
+            gameController.updateScore(score);
+        }
+        
+    }
+
+    public void maxHealthUpgrade()
+    {
+        if(score >= 3)
+        {
+            maxHealth += 3;
+            score -= 3;
+            gameController.updateScore(score);
+        }
+        
+    }
     
+    public void healUpgrade()
+    {
+        if(score >= 5)
+        {
+            curHealth = maxHealth;
+            score -= 5;
+            gameController.updateScore(score);
+        }
+        
+    }
+
+    public void damageUpgrade()
+    {
+        if(score >= 3)
+        {
+            damageOnHit += 2;
+            score -= 3;
+            gameController.updateScore(score);
+        }
+        
+    }
 }

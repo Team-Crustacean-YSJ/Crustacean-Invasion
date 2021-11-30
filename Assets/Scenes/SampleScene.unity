@@ -1597,6 +1597,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 904985979}
+    - target: {fileID: 3640372431117753937, guid: 4993d04874dabba41b286ef7a5027be6, type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 4362973833488773072}
     - target: {fileID: 3640372431117753939, guid: 4993d04874dabba41b286ef7a5027be6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1639,10 +1643,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3640372431117753939, guid: 4993d04874dabba41b286ef7a5027be6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3640372431117753940, guid: 4993d04874dabba41b286ef7a5027be6, type: 3}
-      propertyPath: m_SleepingMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3640372431117753941, guid: 4993d04874dabba41b286ef7a5027be6, type: 3}
@@ -1723,18 +1723,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 4362973833139638965, guid: ca088b898ffdbfe409324acefe5f1ec0, type: 3}
-      propertyPath: playerHealth
-      value: 
-      objectReference: {fileID: 2135546714}
-    - target: {fileID: 4362973833266656453, guid: ca088b898ffdbfe409324acefe5f1ec0, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4362973833266656453, guid: ca088b898ffdbfe409324acefe5f1ec0, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4362973833751569230, guid: ca088b898ffdbfe409324acefe5f1ec0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1779,12 +1767,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4362973833751569231, guid: ca088b898ffdbfe409324acefe5f1ec0, type: 3}
+      propertyPath: playerAlive
+      value: 
+      objectReference: {fileID: 2135546714}
     - target: {fileID: 4362973833751569329, guid: ca088b898ffdbfe409324acefe5f1ec0, type: 3}
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca088b898ffdbfe409324acefe5f1ec0, type: 3}
+--- !u!114 &4362973833488773072 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4362973833751569231, guid: ca088b898ffdbfe409324acefe5f1ec0, type: 3}
+  m_PrefabInstance: {fileID: 4362973833488773070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5b86dc24dbf5343962d5941fd3ec99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4404222865700348809
 PrefabInstance:
   m_ObjectHideFlags: 0
