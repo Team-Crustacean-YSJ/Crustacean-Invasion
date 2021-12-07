@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tut2Shooting.unity
     guid: 991d535fdc236c246b4e057d9955df50
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: ec530442e98af5144941f075904ee30e
   m_configObjects: {}

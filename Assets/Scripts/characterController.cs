@@ -133,12 +133,8 @@ public class characterController : MonoBehaviour
             }
             else
             {
-                curHealth -= damageOnHit; //take damage
-                healthBar.SetHealth(curHealth); //update the UI
-                anim.SetTrigger("takeHit");
-                invuln = true;
-                Invoke("InvulnTimer", 0.5f);
-
+                TakeDamage();
+               
                 Vector2 dir = transform.position - collision.transform.position; //angle of collision
                 this.characterRigidBody.AddForce(dir * 200);
             }
@@ -155,11 +151,7 @@ public class characterController : MonoBehaviour
         {
             if (!invuln)
             {
-                curHealth -= damageOnHit; //take damage
-                healthBar.SetHealth(curHealth); //update the UI
-                anim.SetTrigger("takeHit");
-                invuln = true;
-                Invoke("InvulnTimer", 1f);
+                TakeDamage();
             }
         }
 
@@ -216,6 +208,15 @@ public class characterController : MonoBehaviour
 
     }
 
+    private void TakeDamage()
+    {
+        curHealth -= damageOnHit; //take damage
+        healthBar.SetHealth(curHealth); //update the UI
+        anim.SetTrigger("takeHit");
+        invuln = true;
+        Invoke("InvulnTimer", 1f);
+    }
+
     public void speedUpgrade()
     {
         if(score >= 2)
@@ -234,6 +235,7 @@ public class characterController : MonoBehaviour
             maxHealth += 3;
             score -= 3;
             gameController.updateScore(score);
+            healthBar.SetHealth(curHealth);
         }
         
     }
@@ -245,6 +247,7 @@ public class characterController : MonoBehaviour
             curHealth = maxHealth;
             score -= 5;
             gameController.updateScore(score);
+            healthBar.SetHealth(curHealth);
         }
         
     }
