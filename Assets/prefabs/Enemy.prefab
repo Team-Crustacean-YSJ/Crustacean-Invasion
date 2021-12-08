@@ -69,9 +69,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1719703841
+  m_SortingLayer: 3
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7979084967657331261, guid: 7c9349a90ed88da4da6b48dbd81d0cde, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -154,6 +154,7 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 350
   nextWaypointDistance: 3
+  coin: {fileID: 243477349704934724, guid: 7049840aa0155324c85d93fca5fdc714, type: 3}
   enemyGFX: {fileID: 231412282987987840}
 --- !u!61 &3588789505367814588
 BoxCollider2D:

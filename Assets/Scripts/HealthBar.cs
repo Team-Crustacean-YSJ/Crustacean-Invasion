@@ -6,18 +6,24 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Slider healthBar;
-    public characterController playerHealth;
+
+    [SerializeField]
+    private Text healthText;
+
     // Start is called before the first frame update
     void Start()
     {
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<characterController>();
         healthBar = GetComponent<Slider>();
-        healthBar.maxValue = playerHealth.maxHealth;
-        healthBar.value = playerHealth.maxHealth;
+        healthBar.maxValue = characterController.maxHealth;
+        healthBar.value = characterController.curHealth;
+        healthText.text = characterController.curHealth.ToString() + "/" + characterController.maxHealth.ToString();
+
     }
 
     public void SetHealth(int hp)
     {
+        healthBar.maxValue = characterController.maxHealth;
         healthBar.value = hp;
+        healthText.text = characterController.curHealth.ToString() + "/" + characterController.maxHealth.ToString();
     }
 }

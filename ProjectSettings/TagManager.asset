@@ -8,6 +8,12 @@ TagManager:
   - Enemy
   - ShowOnPause
   - ShowOnFinish
+  - pickups
+  - Door
+  - Upgrades
+  - Shop
+  - spikes
+  - music
   layers:
   - Default
   - TransparentFX
@@ -18,7 +24,7 @@ TagManager:
   - Obstacles
   - 
   - Enemy
-  - 
+  - Pickups
   - 
   - 
   - 

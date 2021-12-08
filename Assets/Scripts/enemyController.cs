@@ -12,11 +12,14 @@ public class enemyController : MonoBehaviour
     public float speed = 200f;
     public float nextWaypointDistance = 3f;
 
+    public GameObject coin;
+    private bool coinSpawned = false;
+
     public Transform enemyGFX;
 
     Path path;
     int currentWaypoint = 0;
-    bool reachedEndOfPath = false;
+    //bool reachedEndOfPath = false;
 
     Seeker seeker;
     Rigidbody2D rb;
@@ -55,7 +58,13 @@ public class enemyController : MonoBehaviour
     {
         if(health <= 0)
         {
+            GetComponent<BoxCollider2D>().enabled = false; //turn off the collider
             anim.SetBool("isDead", true);
+            if (coinSpawned == false) //I don't know why, but if I just instantiate without this bool check, it spawns 77 coins. This makes it work, despite not changing any of the logic flow.
+            {
+                Instantiate(coin, transform.position, transform.rotation);
+                coinSpawned = true;
+            }
             Destroy(gameObject, 1.0f);
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
@@ -69,12 +78,12 @@ public class enemyController : MonoBehaviour
             return; //if no path, don't do anything
         if (currentWaypoint >= path.vectorPath.Count)
         {
-            reachedEndOfPath = true; //if the current waypoint is the final location, stop doing things
+            //reachedEndOfPath = true; //if the current waypoint is the final location, stop doing things
             return;
         }
         else
         {
-            reachedEndOfPath = false; //otherwise keep doing things
+            //reachedEndOfPath = false; //otherwise keep doing things
 
 
             Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
