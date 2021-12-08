@@ -13,6 +13,7 @@ TagManager:
   - Upgrades
   - Shop
   - spikes
+  - music
   layers:
   - Default
   - TransparentFX

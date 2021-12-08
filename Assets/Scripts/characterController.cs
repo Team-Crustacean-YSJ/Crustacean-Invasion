@@ -10,9 +10,7 @@ public class characterController : MonoBehaviour
     private float moveVertical;
     private Vector2 currentVelocity;
 
-    //Serialize allows to have private variables accessible in Unity editor 
-    [SerializeField]
-    private static float movementSpeed = 4.5f; // movement speed 
+    public static float movementSpeed = 4.5f; // movement speed 
     private Rigidbody2D characterRigidBody; //how we move 
     public Animator anim; //access the animator 
     private bool isJumping = false; // two bools to prevent spam jumping 
@@ -40,6 +38,9 @@ public class characterController : MonoBehaviour
     public static int score = 0;
     public UpgradeMenu upgradeMenu;
     public GameController gameController;
+
+    //Projectile Damage
+    public static int playerDamage = 2;
     
     // Start is called before the first frame update
     void Start()
@@ -206,6 +207,8 @@ public class characterController : MonoBehaviour
             currentScene = 0;
         }
 
+        healthBar.SetHealth(curHealth);
+
     }
 
     private void TakeDamage()
@@ -233,6 +236,7 @@ public class characterController : MonoBehaviour
         if(score >= 3)
         {
             maxHealth += 3;
+            curHealth += 3;
             score -= 3;
             gameController.updateScore(score);
             healthBar.SetHealth(curHealth);
@@ -256,7 +260,7 @@ public class characterController : MonoBehaviour
     {
         if(score >= 3)
         {
-            damageOnHit += 2;
+            playerDamage += 1;
             score -= 3;
             gameController.updateScore(score);
         }

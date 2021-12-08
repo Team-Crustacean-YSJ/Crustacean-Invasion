@@ -7,12 +7,16 @@ public class projectile : MonoBehaviour
     public float speed;
     public float lifeTime;
     public float distance;
-    public int damage;
+    private int damage;
     public LayerMask solids;
+     
 
     // Start is called before the first frame update
     void Start()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        characterController characterController = player.GetComponent<characterController>();
+        damage = characterController.playerDamage;
         Invoke("DestroyProjectile", lifeTime);
     }
 
