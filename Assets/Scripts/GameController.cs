@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,17 +8,21 @@ public class GameController : MonoBehaviour
 {
     GameObject[] pauseObjects;
     GameObject[] finishObjects;
+
     public characterController playerAlive;
 
     [SerializeField]
     private Text scoreText;
+
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1;
         pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
-        finishObjects = GameObject.FindGameObjectsWithTag("ShowOnFinish");			
+
+        finishObjects = FindGameObjectsWithTags(new string[] { "ShowOnFinish", "ExitButton" }); //So I can have the exit button with it's own tag
+        
         playerAlive = GameObject.FindGameObjectWithTag("Player").GetComponent<characterController>();
         hidePaused();
         hideFinished();
@@ -96,6 +101,24 @@ public class GameController : MonoBehaviour
 
     public void updateScore(int playerScore)
     {
-        scoreText.text = "Score: " + playerScore.ToString();
+        scoreText.text = "Coins: " + playerScore.ToString();
+    }
+
+    public void exitGame()
+    {
+        Application.Quit();
+    }
+
+    GameObject[] FindGameObjectsWithTags(params string[] tags)
+    {
+        var all = new List<GameObject>();
+
+        foreach (string tag in tags)
+        {
+            var temp = GameObject.FindGameObjectsWithTag(tag).ToList();
+            all = all.Concat(temp).ToList();
+        }
+
+        return all.ToArray();
     }
 }

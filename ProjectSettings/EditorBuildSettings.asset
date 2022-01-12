@@ -17,4 +17,37 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: ec530442e98af5144941f075904ee30e
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level1JustCoins.unity
+    guid: 9f3f028adcaf824428fdc89c2e1dcfb8
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level2.unity
+    guid: 824a532808f7c7246ad679ee4480bf22
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level3.unity
+    guid: a8a0bc7bd4c2e614ea68e9f5378b6afb
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level4.unity
+    guid: b4c995914e0bd794798970f90c45a35a
+  - enabled: 1
+    path: Assets/Scenes/Levels/level5.unity
+    guid: 062c745112cf1364ca2ce2ffbf5cdf67
+  - enabled: 1
+    path: Assets/Scenes/Levels/level6.unity
+    guid: d9b765dd4382e424ea25f5619b300610
+  - enabled: 1
+    path: Assets/Scenes/Levels/level7.unity
+    guid: 65428742f45da1245bd8717adfaca955
+  - enabled: 1
+    path: Assets/Scenes/Levels/level8.unity
+    guid: 02b9a73f71905fa468bec180ae69ce67
+  - enabled: 1
+    path: Assets/Scenes/Levels/level9.unity
+    guid: a4137b97028394f45a361ab3481ae9c9
+  - enabled: 1
+    path: Assets/Scenes/Levels/level10.unity
+    guid: 2bd30836333c49143ba590d259518115
+  - enabled: 1
+    path: Assets/Scenes/bossfight.unity
+    guid: d0571e2c1b2630949a010ca967bb5609
   m_configObjects: {}

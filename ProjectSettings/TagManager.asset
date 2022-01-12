@@ -14,6 +14,10 @@ TagManager:
   - Shop
   - spikes
   - music
+  - RandomDoor
+  - boss
+  - VictoryScreen
+  - ExitButton
   layers:
   - Default
   - TransparentFX

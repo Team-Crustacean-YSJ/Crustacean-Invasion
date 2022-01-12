@@ -41,7 +41,14 @@ public class characterController : MonoBehaviour
 
     //Projectile Damage
     public static int playerDamage = 2;
-    
+
+    //Level List
+    static List<int> remainingLevels = new List<int>()
+    {
+        4,5,6,7,8,9,10,11,12,13
+    };
+    static bool beenShop = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +59,7 @@ public class characterController : MonoBehaviour
             healthBar.SetHealth(curHealth);
             runOnce = true;
         }
+
     }
 
     // Update is called once per frame
@@ -124,7 +132,7 @@ public class characterController : MonoBehaviour
         {
             this.isJumping = false; //let the character jump again
             anim.SetBool("isJumping", false);//and reset the animations either back to idle or to run
-        } else if (collision.gameObject.tag.Equals("Enemy") ^ collision.gameObject.tag.Equals("spikes")) //if enemy
+        } else if (collision.gameObject.tag.Equals("Enemy") || collision.gameObject.tag.Equals("spikes") || collision.gameObject.tag.Equals("boss")) //if enemy
         {
             if (invuln)
             {
@@ -163,6 +171,15 @@ public class characterController : MonoBehaviour
                 LoadScene();
             }
             
+        }
+
+        if (collision.gameObject.tag.Equals("RandomDoor") && (Input.GetAxis("Submit") > 0)) //if door and button
+        {
+            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+            {
+                LoadRandomScene();
+            }
+
         }
 
         if (collision.gameObject.tag.Equals("Shop") && (Input.GetAxis("Submit") > 0))
@@ -209,6 +226,47 @@ public class characterController : MonoBehaviour
 
         healthBar.SetHealth(curHealth);
 
+    }
+
+    private void LoadRandomScene()
+    {
+        int maxScene, randomNum = 0, newScene = 0;
+        if(remainingLevels.Count > 0)
+        {
+            maxScene = remainingLevels.Count - 1;
+            randomNum = Random.Range(0, maxScene);
+            newScene = remainingLevels[randomNum];
+        }
+        
+        Debug.Log("This is level" + newScene);
+
+        if (remainingLevels.Count == 5 && beenShop == false)
+        {
+            SceneManager.LoadScene(3, LoadSceneMode.Single);
+            beenShop = true;
+        }
+        else if (remainingLevels.Count == 0)
+        {
+
+            if (beenShop)
+            {
+                SceneManager.LoadScene(14, LoadSceneMode.Single);
+            }
+            else
+            {
+                SceneManager.LoadScene(3, LoadSceneMode.Single);
+                beenShop = true;
+            }
+        }
+        else
+        {
+            SceneManager.LoadScene(newScene, LoadSceneMode.Single);
+            beenShop = false;
+            remainingLevels.RemoveAt(randomNum);
+
+            Debug.Log("There are " + remainingLevels.Count + " levels remaining");
+        }
+        
     }
 
     private void TakeDamage()

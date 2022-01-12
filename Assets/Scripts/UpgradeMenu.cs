@@ -22,7 +22,7 @@ public class UpgradeMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(characterController.playerDamage >= 4)
+        if(characterController.playerDamage >= 10)
         {
             damageUpgrade.interactable = false;
         }

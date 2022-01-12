@@ -24,9 +24,18 @@ public class enemyController : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
+    public BossScript bossScript;
+
+    int bossDrops = 20;
+
     public void TakeDamage(int damage)
     {
         health -= damage;
+
+        if(gameObject.tag == "boss")
+        {
+            bossScript.SetHealth(health);
+        }
     }
 
     // Start is called before the first frame update
@@ -63,11 +72,20 @@ public class enemyController : MonoBehaviour
             if (coinSpawned == false) //I don't know why, but if I just instantiate without this bool check, it spawns 77 coins. This makes it work, despite not changing any of the logic flow.
             {
                 Instantiate(coin, transform.position, transform.rotation);
+                if(gameObject.tag == "boss")
+                {
+                    bossScript.ShowEOG();
+                    for (int i = 0; i < bossDrops; ++i)
+                    {
+                        Instantiate(coin, transform.position, transform.rotation);
+                    }
+                }
                 coinSpawned = true;
             }
             Destroy(gameObject, 1.0f);
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
+            
         }
         
     }

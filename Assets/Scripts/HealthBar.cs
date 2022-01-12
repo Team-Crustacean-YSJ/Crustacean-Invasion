@@ -12,12 +12,11 @@ public class HealthBar : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         healthBar = GetComponent<Slider>();
         healthBar.maxValue = characterController.maxHealth;
         healthBar.value = characterController.curHealth;
         healthText.text = characterController.curHealth.ToString() + "/" + characterController.maxHealth.ToString();
-
     }
 
     public void SetHealth(int hp)
@@ -26,4 +25,6 @@ public class HealthBar : MonoBehaviour
         healthBar.value = hp;
         healthText.text = characterController.curHealth.ToString() + "/" + characterController.maxHealth.ToString();
     }
+
+
 }
