@@ -280,10 +280,10 @@ public class characterController : MonoBehaviour
 
     public void speedUpgrade()
     {
-        if(score >= 2)
+        if(score >= 4)
         {
             movementSpeed += 0.5f;
-            score -= 2;
+            score -= 4;
             gameController.updateScore(score);
         }
         
@@ -291,11 +291,11 @@ public class characterController : MonoBehaviour
 
     public void maxHealthUpgrade()
     {
-        if(score >= 3)
+        if(score >= 6)
         {
             maxHealth += 3;
             curHealth += 3;
-            score -= 3;
+            score -= 6;
             gameController.updateScore(score);
             healthBar.SetHealth(curHealth);
         }
@@ -304,10 +304,10 @@ public class characterController : MonoBehaviour
     
     public void healUpgrade()
     {
-        if(score >= 5)
+        if(score >= 10)
         {
             curHealth = maxHealth;
-            score -= 5;
+            score -= 10;
             gameController.updateScore(score);
             healthBar.SetHealth(curHealth);
         }
@@ -316,10 +316,10 @@ public class characterController : MonoBehaviour
 
     public void damageUpgrade()
     {
-        if(score >= 3)
+        if(score >= 5)
         {
             playerDamage += 1;
-            score -= 3;
+            score -= 5;
             gameController.updateScore(score);
         }
         

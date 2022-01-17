@@ -402,6 +402,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5940518600604409978, guid: ca088b898ffdbfe409324acefe5f1ec0, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca088b898ffdbfe409324acefe5f1ec0, type: 3}
 --- !u!224 &196149410 stripped
@@ -1019,7 +1023,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Damage Upgrade
 
-    3 Points'
+    5 Coins'
 --- !u!222 &479111985
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1233,7 +1237,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Heal to Full
 
-    5 Points'
+    10 Coins'
 --- !u!222 &813379796
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1712,7 +1716,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Movement Speed
 
-    2 Points'
+    4 Coins'
 --- !u!222 &1378421859
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1793,7 +1797,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Health Upgrade
 
-    3 Points'
+    6 Coins'
 --- !u!222 &1386146948
 CanvasRenderer:
   m_ObjectHideFlags: 0
